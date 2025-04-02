@@ -68,11 +68,6 @@ public class LevelController : MonoBehaviour
 
     IEnumerator CloseSeedPicker()
     {
-        yield return StartCoroutine(MoveBoth(
-            cameraTransform, cameraStartPos, cameraMoveDuration,
-            seedPickerUI, seedPickerStartPos, uiMoveDuration
-        ));
-
         // Disable all SeedPacket scripts
         SeedPacket[] packets = FindObjectsOfType<SeedPacket>();
         foreach (SeedPacket packet in packets)
@@ -86,6 +81,11 @@ public class LevelController : MonoBehaviour
         {
             plant.enabled = false;
         }
+
+        yield return StartCoroutine(MoveBoth(
+            cameraTransform, cameraStartPos, cameraMoveDuration,
+            seedPickerUI, seedPickerStartPos, uiMoveDuration
+        ));
     }
 
     IEnumerator MoveBoth(Transform cam, Vector3 camTarget, float camDuration,
