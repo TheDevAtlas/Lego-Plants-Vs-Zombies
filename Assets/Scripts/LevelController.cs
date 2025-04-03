@@ -21,6 +21,8 @@ public class LevelController : MonoBehaviour
 
     private bool isSeedPickerActive = false;
 
+    public PlantingController plantingController;
+
     void Start()
     {
         // Set starting positions
@@ -62,8 +64,6 @@ public class LevelController : MonoBehaviour
             isSeedPickerActive = false;
             StartCoroutine(CloseSeedPicker());
         }
-
-        
     }
 
     IEnumerator CloseSeedPicker()
@@ -80,16 +80,18 @@ public class LevelController : MonoBehaviour
         foreach (PlantedImage plant in plants)
         {
             plant.enabled = false;
+            plant.gameObject.GetComponent<SidebarPlantSelector>().enabled = true;
         }
 
         yield return StartCoroutine(MoveBoth(
             cameraTransform, cameraStartPos, cameraMoveDuration,
             seedPickerUI, seedPickerStartPos, uiMoveDuration
         ));
+
+        plantingController.enabled = true;
     }
 
-    IEnumerator MoveBoth(Transform cam, Vector3 camTarget, float camDuration,
-                         RectTransform ui, Vector2 uiTarget, float uiDuration)
+    IEnumerator MoveBoth(Transform cam, Vector3 camTarget, float camDuration, RectTransform ui, Vector2 uiTarget, float uiDuration)
     {
         float time = 0f;
 
