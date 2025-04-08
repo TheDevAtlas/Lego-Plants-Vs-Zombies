@@ -9,6 +9,11 @@ public class CameraScreenshot : MonoBehaviour
     public int resolutionWidth = 512;
     public int resolutionHeight = 512;
     public string savePath = "Assets/Screenshot.png";
+
+    [Header("Transparency Settings")]
+    public Color colorToMakeTransparent = Color.red;
+    [Range(0f, 1f)]
+    public float tolerance = 0.1f;
 }
 
 [CustomEditor(typeof(CameraScreenshot))]
@@ -37,8 +42,8 @@ public class CameraScreenshotEditor : Editor
         Color originalBG = cam.backgroundColor;
         CameraClearFlags originalFlags = cam.clearFlags;
 
-        // Set solid red background
-        cam.backgroundColor = Color.red;
+        // Use selected background color
+        cam.backgroundColor = script.colorToMakeTransparent;
         cam.clearFlags = CameraClearFlags.SolidColor;
 
         // Render to texture
@@ -55,24 +60,24 @@ public class CameraScreenshotEditor : Editor
         RenderTexture.active = null;
         DestroyImmediate(rt);
 
-        // Convert red to transparent with a tolerance
+        // Convert background color to transparent with tolerance
         Color32[] pixels = tex.GetPixels32();
+        Color target = script.colorToMakeTransparent;
+        float tol = script.tolerance;
+
         for (int i = 0; i < pixels.Length; i++)
         {
             Color32 p = pixels[i];
-            if (p.r > 200 && p.g < 50 && p.b < 50)
+            if (Mathf.Abs(p.r / 255f - target.r) < tol &&
+                Mathf.Abs(p.g / 255f - target.g) < tol &&
+                Mathf.Abs(p.b / 255f - target.b) < tol)
             {
-                pixels[i].r = 0;
-                pixels[i].b = 0;
-                pixels[i].g = 0;
-                pixels[i].a = 0;
+                pixels[i] = new Color32(0, 0, 0, 0); // Transparent
             }
         }
+
         tex.SetPixels32(pixels);
         tex.Apply();
-
-        // tex.SetPixels32(pixels);
-        // tex.Apply();
 
         // Save to PNG
         byte[] pngData = tex.EncodeToPNG();

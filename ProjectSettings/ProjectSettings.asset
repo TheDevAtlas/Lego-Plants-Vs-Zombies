@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 0eed4ea484edfd5429df7216f5bdb257
+  productGUID: 371f3bc4c675b4f47baf5f9bd18e4ada
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: NEWLegoPlantsVsZombies
+  productName: PlantsVsZombies
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -852,14 +852,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: NEWLegoPlantsVsZombies
+  metroPackageName: PlantsVsZombies
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: NEWLegoPlantsVsZombies
+  metroApplicationDescription: PlantsVsZombies
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -930,10 +930,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4c60e2c2-4524-426c-a9d3-bc04ca62dd67
+  cloudProjectId: fb0d72ff-8d75-4b56-b100-2ecc6e941ff4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: NEWLegoPlantsVsZombies
+  projectName: PlantsVsZombies
   organizationId: blue-pixel-studios
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
