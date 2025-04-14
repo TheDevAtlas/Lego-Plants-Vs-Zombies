@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff8cc84a0bcf3b43978a6ae04f5054e, type: 3}
+  m_Name: Sunflower
+  m_EditorClassIdentifier: 
+  plantName: Sunflower
+  sunCost: 50
+  rechargeTime: 1
+  packetImage: {fileID: 21300000, guid: 40fbf112e33a93a458275f4f15dd4797, type: 3}
+  plantPrefab: {fileID: 1112754795428250853, guid: 01ddb3cbeb01b7c45a5d66599a7568a9, type: 3}
+  offset: {x: 0, y: 0.1666667, z: 0}
+  rotateOffset: {x: 0, y: 0, z: 0}
