@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4115214562373556675}
   - component: {fileID: 9048288728321580399}
   - component: {fileID: 5799620661810429033}
+  - component: {fileID: 3265844734397613965}
   m_Layer: 0
   m_Name: PotatoMine
   m_TagString: Untagged
@@ -91,6 +92,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &3265844734397613965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815674503009677567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2821990641414ba4b8802135d2afc5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armingTime: 15
+  dropAmount: 0.5
+  detectionRangeX: 0.8
+  zRowTolerance: 0.3
+  slerpSpeed: 2
 --- !u!1 &977727166965540343
 GameObject:
   m_ObjectHideFlags: 0

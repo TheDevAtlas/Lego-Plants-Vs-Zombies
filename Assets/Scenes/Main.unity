@@ -3988,6 +3988,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 429961230}
+    - target: {fileID: 1696694576324490594, guid: 0bf7aabec1cfb344d97d7b891d8aec73, type: 3}
+      propertyPath: tileLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 2294069189417532123, guid: 0bf7aabec1cfb344d97d7b891d8aec73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1086.0676

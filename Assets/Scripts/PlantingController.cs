@@ -21,6 +21,9 @@ public class PlantingController : MonoBehaviour
     private GameObject ghostInstance;
     public GameController gameController;
 
+    public LayerMask tileLayerMask;
+
+
     // Called when the script instance is being loaded.
     void Awake()
     {
@@ -62,7 +65,7 @@ public class PlantingController : MonoBehaviour
             RaycastHit hit;
 
             // If the ray hits an object in the scene…
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, tileLayerMask))
             {
                 // Check if the hit object is tagged as "tile".
                 if (hit.collider.CompareTag("tile"))
@@ -94,6 +97,9 @@ public class PlantingController : MonoBehaviour
                             ghostCherry.enabled = false;
                             ghostInstance.GetComponent<Animator>().enabled = false;
                         }
+
+                        PotatoMine ghostPotato = ghostInstance.GetComponent<PotatoMine>();
+                        if (ghostPotato) {ghostPotato.enabled = false;}
                     }
                     else if (ghostInstance != null)
                     {
