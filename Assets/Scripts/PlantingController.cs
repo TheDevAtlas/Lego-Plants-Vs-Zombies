@@ -100,6 +100,9 @@ public class PlantingController : MonoBehaviour
 
                         PotatoMine ghostPotato = ghostInstance.GetComponent<PotatoMine>();
                         if (ghostPotato) {ghostPotato.enabled = false;}
+
+                        Cactus ghostCactus = ghostInstance.GetComponent<Cactus>();
+                        if (ghostCactus) {ghostCactus.enabled = false;}
                     }
                     else if (ghostInstance != null)
                     {

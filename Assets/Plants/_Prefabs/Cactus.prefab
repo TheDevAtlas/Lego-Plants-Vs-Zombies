@@ -967,6 +967,7 @@ GameObject:
   - component: {fileID: 3028191954145658250}
   - component: {fileID: 3819325218500022346}
   - component: {fileID: 2291753350820893810}
+  - component: {fileID: 1138886585181488974}
   m_Layer: 0
   m_Name: Cactus
   m_TagString: Untagged
@@ -1046,6 +1047,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1138886585181488974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081482991392218805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad9fdef7a7592040b8b5af029ea7929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 4720243026089857639}
+  projectilePrefab: {fileID: 7547877820779165431, guid: 44026cf9ef8743649a1c731045b95490, type: 3}
+  shootAnimator: {fileID: 3028191954145658250}
+  shootDirection: {x: 1, y: 0, z: 0}
+  maxSightX: 10
+  zRowTolerance: 0.3
 --- !u!1 &6664506680780819137
 GameObject:
   m_ObjectHideFlags: 0
