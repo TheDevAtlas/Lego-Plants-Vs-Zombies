@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 122308996326424989}
   - component: {fileID: -1480114225289004965}
   - component: {fileID: 3654353914733479505}
+  - component: {fileID: 2654888212901720216}
   m_Layer: 0
   m_Name: SunFlower
   m_TagString: Untagged
@@ -174,6 +175,27 @@ MonoBehaviour:
   sunPrefab: {fileID: 2492523191339976378, guid: 363e43503d5c75e4d8d878e7dc13aed2, type: 3}
   upwardForce: 5
   sideForce: 0.12
+--- !u!135 &2654888212901720216
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112754795428250853}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2167301051772530852
 GameObject:
   m_ObjectHideFlags: 0

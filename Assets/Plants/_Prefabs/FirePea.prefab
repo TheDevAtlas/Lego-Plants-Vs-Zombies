@@ -247,6 +247,8 @@ GameObject:
   - component: {fileID: 198639465249402455}
   - component: {fileID: 2889804232695624810}
   - component: {fileID: 7617654452258368920}
+  - component: {fileID: -3599154344510961428}
+  - component: {fileID: 4398487002450655343}
   m_Layer: 0
   m_Name: FirePea
   m_TagString: Untagged
@@ -262,7 +264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6021000518179409994}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -307,6 +309,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
+--- !u!114 &-3599154344510961428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021000518179409994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dbfee85317def409542f0a2815ba0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 1182992095366745816}
+  peaPrefab: {fileID: 7547877820779165431, guid: 1c21ec2fb1bbe61438ac739644aadbfb, type: 3}
+  shootAnimator: {fileID: 2889804232695624810}
+  shootDirection: {x: 1, y: 0, z: 0}
+  maxSightX: 10
+  zRowTolerance: 0.3
+  PeaType: 2
+--- !u!135 &4398487002450655343
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021000518179409994}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6034531574106242021
 GameObject:
   m_ObjectHideFlags: 0

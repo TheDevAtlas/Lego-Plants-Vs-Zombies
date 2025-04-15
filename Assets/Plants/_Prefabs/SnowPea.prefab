@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 7327443623149314419}
   - component: {fileID: 3670645361940209554}
   - component: {fileID: 3700756706611861534}
+  - component: {fileID: 357135813366741126}
+  - component: {fileID: 94496450684098729}
   m_Layer: 0
   m_Name: SnowPea
   m_TagString: Untagged
@@ -112,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2887081656088855706}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -157,6 +159,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
+--- !u!114 &357135813366741126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887081656088855706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dbfee85317def409542f0a2815ba0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 5492476358611757576}
+  peaPrefab: {fileID: 7547877820779165431, guid: 1c21ec2fb1bbe61438ac739644aadbfb, type: 3}
+  shootAnimator: {fileID: 3670645361940209554}
+  shootDirection: {x: 1, y: 0, z: 0}
+  maxSightX: 10
+  zRowTolerance: 0.3
+  PeaType: 1
+--- !u!135 &94496450684098729
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887081656088855706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3588383031055840145
 GameObject:
   m_ObjectHideFlags: 0

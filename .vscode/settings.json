@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "LegoPVZ.sln"
+    "dotnet.defaultSolution": "LegoPlantsVsZombies.sln"
 }

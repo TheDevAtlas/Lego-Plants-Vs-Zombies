@@ -74,8 +74,19 @@ public class PlantingController : MonoBehaviour
                     if (ghostInstance == null && selectedSeed.plantPrefab != null)
                     {
                         ghostInstance = Instantiate(selectedSeed.plantPrefab, tilePosition + selectedSeed.offset, Quaternion.identity);
+
                         ghostInstance.transform.Rotate(selectedSeed.rotateOffset);
                         ApplyGhostMaterial(ghostInstance);
+
+                        // Disable scripts so that ghost plants do not work as real plants //
+                        Collider ghostCollider = ghostInstance.GetComponent<Collider>();
+                        if (ghostCollider) {ghostCollider.enabled = false;}
+
+                        PeaShooter ghostShooter = ghostInstance.GetComponent<PeaShooter>();
+                        if (ghostShooter) {ghostShooter.enabled = false;}
+
+                        LobProjectile ghostLob = ghostInstance.GetComponent<LobProjectile>();
+                        if (ghostLob) {ghostLob.enabled = false;}
                     }
                     else if (ghostInstance != null)
                     {
