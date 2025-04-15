@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 3170991014618755168}
   - component: {fileID: -3341169859864973687}
   - component: {fileID: 7753708206445930864}
+  - component: {fileID: 9038968975851038997}
   m_Layer: 7
   m_Name: Chomper
   m_TagString: Untagged
@@ -612,7 +613,24 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &9038968975851038997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813665666743383435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95a6c59e9e443e49929b0c562991555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToChew: 15
+  detectionRangeX: 1.5
+  isChewing: 0
+  animator: {fileID: 3170991014618755168}
+  zRowTolerance: 0.3
 --- !u!1 &4831625013153326056
 GameObject:
   m_ObjectHideFlags: 0
