@@ -108,10 +108,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8674733814496390599, guid: fb34762f5b2ed97459d1b380ad69d484, type: 3}
   shootAnimator: {fileID: 8038531308685843266}
   shootDirection: {x: 0, y: 1, z: 0}
-  maxSightX: 10
+  maxSightX: 4.75
   zRowTolerance: 0.3
   isShooting: 0
   currentTarget: {fileID: 0}
+  damage: 40
 --- !u!1 &420060666041710910
 GameObject:
   m_ObjectHideFlags: 0

@@ -618,7 +618,7 @@ MonoBehaviour:
   peaPrefab: {fileID: 7547877820779165431, guid: 1c21ec2fb1bbe61438ac739644aadbfb, type: 3}
   shootAnimator: {fileID: 6996463739470216718}
   shootDirection: {x: 1, y: 0, z: 0}
-  maxSightX: 6
+  maxSightX: 4.75
   zRowTolerance: 0.3
   PeaType: 0
 --- !u!135 &7878481327061985104

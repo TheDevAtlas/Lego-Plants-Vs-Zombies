@@ -12,6 +12,7 @@ public class LobProjectile : MonoBehaviour
     private float journeyLength;
     private float progress = 0f;
     private Vector3 lastPosition;
+    public int damage;
 
     void Start()
     {
@@ -70,14 +71,13 @@ public class LobProjectile : MonoBehaviour
         switch (lobType)
         {
             case LobType.Normal:
-                Debug.Log("Normal pea hit!");
+                Debug.Log("Normal lob hit!");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Normal);
                 break;
             case LobType.Ice:
-                Debug.Log("Ice pea hit! Apply slow effect.");
+                Debug.Log("Ice lob hit! Apply slow effect.");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Ice);
                 break;
         }
-
-        // Placeholder destruction — replace with proper damage system
-        Destroy(zombie);
     }
 }

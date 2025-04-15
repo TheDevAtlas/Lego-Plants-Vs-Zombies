@@ -108,6 +108,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: 6bf582825e101dc44af27ffe88bdb6f7, type: 2}
   iceMaterial: {fileID: 0}
   fireMaterial: {fileID: 0}
+  damage: 30
 --- !u!135 &-443922531269513831
 SphereCollider:
   m_ObjectHideFlags: 0

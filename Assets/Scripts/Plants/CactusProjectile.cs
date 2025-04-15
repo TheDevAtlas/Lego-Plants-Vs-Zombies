@@ -14,6 +14,7 @@ public class CactusProjectile : MonoBehaviour
     public Material fireMaterial;
 
     private Renderer rend;
+    public int damage;
 
     void Start()
     {
@@ -47,10 +48,8 @@ public class CactusProjectile : MonoBehaviour
         {
             case PeaType.Normal:
                 Debug.Log("Normal Cactus hit!");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Normal);
                 break;
         }
-
-        // Placeholder destruction — replace with proper damage system
-        Destroy(zombie);
     }
 }

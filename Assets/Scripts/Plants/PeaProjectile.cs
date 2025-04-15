@@ -14,6 +14,7 @@ public class PeaProjectile : MonoBehaviour
     public Material fireMaterial;
 
     private Renderer rend;
+    public int damage;
 
     void Start()
     {
@@ -64,17 +65,20 @@ public class PeaProjectile : MonoBehaviour
         {
             case PeaType.Normal:
                 Debug.Log("Normal pea hit!");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Normal);
                 break;
             case PeaType.Ice:
                 Debug.Log("Ice pea hit! Apply slow effect.");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Ice);
                 break;
             case PeaType.Fire:
                 Debug.Log("Fire pea hit! Extra damage or burn.");
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Fire);
                 break;
         }
 
         // Placeholder destruction — replace with proper damage system
-        Destroy(zombie);
+        // Destroy(zombie);
     }
 
     public void SetPeaType(PeaType type)

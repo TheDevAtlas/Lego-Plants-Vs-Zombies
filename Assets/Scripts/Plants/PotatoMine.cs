@@ -13,6 +13,7 @@ public class PotatoMine : MonoBehaviour
     private Vector3 buriedPos;
     private bool isArmed = false;
     private bool risingUp = false;
+    public int damage;
 
     void Start()
     {
@@ -62,7 +63,9 @@ public class PotatoMine : MonoBehaviour
         {
             if (Vector3.Distance(zombie.transform.position, transform.position) <= 1.414f * 0.7f)
             {
-                Destroy(zombie);
+                // Destroy(zombie);
+
+                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Explode);
             }
         }
 

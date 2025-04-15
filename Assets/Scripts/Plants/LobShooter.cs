@@ -12,6 +12,7 @@ public class LobShooter : MonoBehaviour
 
     public bool isShooting = false;
     public GameObject currentTarget;
+    public int damage;
 
     void Update()
     {
@@ -37,7 +38,7 @@ public class LobShooter : MonoBehaviour
 
             // Make sure zombie is in roughly the shootDirection and on the same row
             //bool inDirection = Vector3.Dot(toZombie.normalized, shootDirection.normalized) > 0.5f;
-            bool inRange = toZombie.magnitude <= maxSightX;
+            bool inRange = zombie.transform.position.x <= maxSightX;
             bool sameRow = Mathf.Abs(zombie.transform.position.z - transform.position.z) <= zRowTolerance;
 
             print("inRange " + inRange + " sameRow " + sameRow);
@@ -76,6 +77,7 @@ public class LobShooter : MonoBehaviour
         if (proj != null)
         {
             proj.zombieTarget = currentTarget.transform;
+            proj.damage = damage;
         }
     }
 }
