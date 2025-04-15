@@ -87,6 +87,13 @@ public class PlantingController : MonoBehaviour
 
                         LobProjectile ghostLob = ghostInstance.GetComponent<LobProjectile>();
                         if (ghostLob) {ghostLob.enabled = false;}
+
+                        CherryBomb ghostCherry = ghostInstance.GetComponent<CherryBomb>();
+                        if (ghostCherry) 
+                        {
+                            ghostCherry.enabled = false;
+                            ghostInstance.GetComponent<Animator>().enabled = false;
+                        }
                     }
                     else if (ghostInstance != null)
                     {

@@ -65,6 +65,7 @@ public class LobProjectile : MonoBehaviour
 
     void DealDamage(GameObject zombie)
     {
+        print("Lob hit Zombie");
         // Replace this with actual damage logic depending on zombie health systems
         switch (lobType)
         {
