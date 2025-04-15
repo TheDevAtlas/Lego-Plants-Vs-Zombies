@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9048288728321580399}
   - component: {fileID: 5799620661810429033}
   - component: {fileID: 3265844734397613965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PotatoMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armingTime: 15
   dropAmount: 0.5
-  detectionRangeX: 0.8
+  detectionRangeX: 1.5
   zRowTolerance: 0.3
   slerpSpeed: 2
   damage: 1800

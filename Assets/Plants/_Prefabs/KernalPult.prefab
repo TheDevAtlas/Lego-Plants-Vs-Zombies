@@ -2047,7 +2047,7 @@ GameObject:
   - component: {fileID: -1830772738896750165}
   - component: {fileID: 2107558625036038483}
   - component: {fileID: 6217907779146658745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KernalPult
   m_TagString: Untagged
   m_Icon: {fileID: 0}

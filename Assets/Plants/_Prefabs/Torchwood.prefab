@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 8532382889152034120}
   - component: {fileID: -1826497273137142859}
   - component: {fileID: 3055061604405270272}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Torchwood
   m_TagString: torchwood
   m_Icon: {fileID: 0}

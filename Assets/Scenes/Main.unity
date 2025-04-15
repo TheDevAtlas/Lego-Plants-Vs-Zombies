@@ -3935,6 +3935,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 190
   speed: 0.2
+  plantDetectDistance: 0.15
+  eatInterval: 0.8
+  eatDamage: 20
   walkDirection: {x: -1, y: 0, z: 0}
   zombieType: 4
   coneHeadPieces:

@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 864929127645378030}
   - component: {fileID: -6223132243104414948}
   - component: {fileID: 1572060117211007037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walnut
   m_TagString: Untagged
   m_Icon: {fileID: 0}

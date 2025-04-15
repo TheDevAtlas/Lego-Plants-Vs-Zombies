@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 8376122608236470023}
   - component: {fileID: 5905618447592531395}
   - component: {fileID: 7190013271609274690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CherryBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

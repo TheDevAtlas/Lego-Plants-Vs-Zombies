@@ -61,7 +61,8 @@ public class PotatoMine : MonoBehaviour
 
         foreach (GameObject zombie in zombies)
         {
-            if (Vector3.Distance(zombie.transform.position, transform.position) <= 1.414f * 0.7f)
+            float dz = Mathf.Abs(zombie.transform.position.z - transform.position.z);
+            if (Vector3.Distance(zombie.transform.position, transform.position) <= 1.414f && dz <= zRowTolerance)
             {
                 // Destroy(zombie);
 

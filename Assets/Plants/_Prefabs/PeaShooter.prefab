@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: -4079515003698173468}
   - component: {fileID: 7946610102426508368}
   - component: {fileID: 7878481327061985104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PeaShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

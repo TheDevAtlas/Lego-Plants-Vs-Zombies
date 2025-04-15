@@ -972,7 +972,7 @@ GameObject:
   - component: {fileID: 1798929127780388710}
   - component: {fileID: -1111417479222765741}
   - component: {fileID: 5571067053431555833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Magnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

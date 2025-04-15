@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3700756706611861534}
   - component: {fileID: 357135813366741126}
   - component: {fileID: 94496450684098729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SnowPea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

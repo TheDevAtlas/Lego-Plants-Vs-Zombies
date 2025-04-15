@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 7617654452258368920}
   - component: {fileID: -3599154344510961428}
   - component: {fileID: 4398487002450655343}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
