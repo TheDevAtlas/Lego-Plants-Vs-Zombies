@@ -162,23 +162,29 @@ public class Zombie : MonoBehaviour
             // Tints every renderer in the zombie (including child pieces) grey.
             foreach (Renderer r in GetComponentsInChildren<Renderer>(true)){ // include self
             
-                r.material.color = Color.grey;
+                if(r.gameObject.activeSelf)
+                {
+                    r.material.color = Color.grey;
+                }
             }
         }
-
-        if (type == DamageType.Explode)
+        else if (type == DamageType.Explode)
         {
             // Tints every renderer in the zombie (including child pieces) grey.
             foreach (Renderer r in GetComponentsInChildren<Renderer>(true)){  // include self
-            
-                r.material.color = Color.grey;
+                if(r.gameObject.activeSelf)
+                {
+                    r.material.color = Color.grey;
+                }
             }
 
             ExplodePieces(type);
         }
+        else // Any other type of death, the head, and only the head, should pop off. 
+        {
 
-        // Explode every child piece.
-        //ExplodePieces(type);
+        }
+
 
         // Notify the wave controller that a zombie died.
         GameObject.FindObjectOfType<WaveController>().ZombieDied();

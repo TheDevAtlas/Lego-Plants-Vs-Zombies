@@ -913,6 +913,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5ba689fbf2a5f44853a6dd738c233e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &629146562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
+  m_PrefabInstance: {fileID: 974158735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada1549d6439f3f44a7aa04066ec119c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &629146564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 241878673546855029, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
+  m_PrefabInstance: {fileID: 974158735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce80022dc9917642a16de400abf6036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &711867552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,6 +943,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1638849513940996556, guid: 7d4d90163c9598348a90be19b4d394fa, type: 3}
+      propertyPath: skySun
+      value: 
+      objectReference: {fileID: 629146564}
     - target: {fileID: 1638849513940996556, guid: 7d4d90163c9598348a90be19b4d394fa, type: 3}
       propertyPath: mainCamera
       value: 
@@ -1567,34 +1593,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: endY
+    - target: {fileID: 241878673546855029, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 629146562}
+    - target: {fileID: 241878673546855029, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: lowestY
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: material1
+    - target: {fileID: 241878673546855029, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
+      propertyPath: sunPrefab
       value: 
-      objectReference: {fileID: 2100000, guid: a0222996579289043bf7c3a355c8aeed, type: 2}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: material2
-      value: 
-      objectReference: {fileID: 2100000, guid: 4f242a3f41ea3e14caadad331869a3d1, type: 2}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: tilePrefab
-      value: 
-      objectReference: {fileID: 4290773740115687431, guid: e170e04d377d86949bdbc5e5bb86b037, type: 3}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: initialRows
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 219203269708786706, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
-      propertyPath: waveStartDelay
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2492523191339976378, guid: 363e43503d5c75e4d8d878e7dc13aed2, type: 3}
     - target: {fileID: 7764432134982302172, guid: 7d0cee1209a85114299659c2901aa80b, type: 3}
       propertyPath: m_Name
       value: Board Generator
@@ -3182,6 +3192,6 @@ SceneRoots:
   - {fileID: 711867552}
   - {fileID: 1485852904}
   - {fileID: 974158735}
-  - {fileID: 97416140}
   - {fileID: 1199864289}
+  - {fileID: 97416140}
   - {fileID: 1424782216}

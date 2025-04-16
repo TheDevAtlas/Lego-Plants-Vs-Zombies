@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8171890980808074185}
   - component: {fileID: 219203269708786706}
+  - component: {fileID: 241878673546855029}
   m_Layer: 0
   m_Name: Board Generator
   m_TagString: Untagged
@@ -48,8 +49,8 @@ MonoBehaviour:
   initialRows: 5
   tileSize: 1
   startY: 2.4
-  lowestY: -0.15
-  endY: -0.15
+  lowestY: 0.1
+  endY: 0
   fallDuration: 0.5
   delayMultiplier: 0.1
   flashEaseInDuration: 0.15
@@ -60,6 +61,28 @@ MonoBehaviour:
   onWaveAdded:
     m_PersistentCalls:
       m_Calls: []
-  waveStartDelay: 0
+  waveStartDelay: 1
   waveTileFallDuration: 0.5
   waveDelayMultiplier: 0.1
+  boardStartX: 0
+  boardStartZ: 0
+  minGrid: {x: 0, y: 0}
+  maxGrid: {x: 0, y: 0}
+--- !u!114 &241878673546855029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764432134982302172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce80022dc9917642a16de400abf6036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunPrefab: {fileID: 7764432134982302172}
+  spawnInterval: 5
+  spawnHeight: 15
+  groundY: 0.5
+  fallDuration: 2
+  board: {fileID: 0}

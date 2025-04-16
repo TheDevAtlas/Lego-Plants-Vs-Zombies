@@ -34,11 +34,11 @@ public class ExtendedBoardGenerator : MonoBehaviour
     public float waveTileFallDuration = 0.5f;
     public float waveDelayMultiplier = 0.1f;
 
-    private Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
-    private float boardStartX;
-    private float boardStartZ;
-    private Vector2Int minGrid;
-    private Vector2Int maxGrid;
+    public Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
+    public float boardStartX;
+    public float boardStartZ;
+    public Vector2Int minGrid;
+    public Vector2Int maxGrid;
 
     void Start()
     {

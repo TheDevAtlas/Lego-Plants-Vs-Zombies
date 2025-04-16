@@ -103,6 +103,9 @@ public class PlantingController : MonoBehaviour
 
                         Cactus ghostCactus = ghostInstance.GetComponent<Cactus>();
                         if (ghostCactus) {ghostCactus.enabled = false;}
+
+                        Magnet ghostMagnet = ghostInstance.GetComponent<Magnet>();
+                        if (ghostMagnet) {ghostMagnet.enabled = false;}
                     }
                     else if (ghostInstance != null)
                     {

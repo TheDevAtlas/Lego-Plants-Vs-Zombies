@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public PlantingController plantingController;
     public WaveController waveController;
     public RectTransform selectorIcon;
+    public SkySun skySun;
 
     [Header("Camera Settings")]
     public Transform mainCamera;              // Reference to the camera transform.
@@ -62,6 +63,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        skySun.enabled = false;
         // If not explicitly assigned, use Camera.main.
         if (mainCamera == null && Camera.main != null)
         {
@@ -370,6 +372,7 @@ public class GameController : MonoBehaviour
         }
         
         waveController.StartLevel();
+        skySun.enabled = true;
     }
 
     /// <summary>
