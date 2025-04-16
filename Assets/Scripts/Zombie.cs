@@ -84,8 +84,10 @@ public class Zombie : MonoBehaviour
             case DamageType.Explode: health -= damage; break;
         }
 
-        if (health <= 0)
+        if (health <= 0){
+            GameObject.FindObjectOfType<WaveController>().ZombieDied();
             Destroy(gameObject);
+        }
     }
 
     public ZombieType zombieType;
@@ -104,7 +106,7 @@ public class Zombie : MonoBehaviour
             case ZombieType.Conehead: health = 560; foreach (var p in coneHeadPieces) p.SetActive(true); break;
             case ZombieType.Buckethead: health = 1290; foreach (var p in bucketHeadPieces) p.SetActive(true); break;
             case ZombieType.Screen: health = 1290; foreach (var p in screenPieces) p.SetActive(true); break;
-            case ZombieType.Football: health = 1100; foreach (var p in footballPieces) p.SetActive(true); break;
+            case ZombieType.Football: health = 1100; speed *= 2f; foreach (var p in footballPieces) p.SetActive(true); break;
             case ZombieType.Flag: health = 190; foreach (var p in flagPieces) p.SetActive(true); break;
         }
     }

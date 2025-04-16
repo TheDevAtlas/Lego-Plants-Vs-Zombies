@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [Header("Game State Settings")]
     public GameState currentState = GameState.SceneIntro;
     public PlantingController plantingController;
+    public WaveController waveController;
     public RectTransform selectorIcon;
 
     [Header("Camera Settings")]
@@ -138,6 +139,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     IEnumerator SceneIntroSequence()
     {
+
         yield return new WaitForSeconds(sceneIntroDelay);
 
         bool cameraFinished = false;
@@ -366,6 +368,8 @@ public class GameController : MonoBehaviour
         {
             plantingController.gameObject.SetActive(true);
         }
+        
+        waveController.StartLevel();
     }
 
     /// <summary>
