@@ -33,7 +33,7 @@ public class Chomper : MonoBehaviour
 
             // Make sure zombie is in roughly the shootDirection and on the same row
             //bool inDirection = Vector3.Dot(toZombie.normalized, shootDirection.normalized) > 0.5f;
-            bool inRange = zombie.transform.position.x <= detectionRangeX;
+            bool inRange = zombie.transform.position.x - transform.position.x <= detectionRangeX;
             bool sameRow = Mathf.Abs(zombie.transform.position.z - transform.position.z) <= zRowTolerance;
 
             print("inRange " + inRange + " sameRow " + sameRow);

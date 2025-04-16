@@ -80,6 +80,7 @@ public class Magnet : MonoBehaviour
         // Step 1: Slerp to target position over 0.8 seconds
         float moveDuration = 0.8f;
         float moveTime = 0f;
+        z.RemoveEquipment();
 
         while (moveTime < moveDuration)
         {
@@ -104,7 +105,7 @@ public class Magnet : MonoBehaviour
         }
 
         Destroy(piece);
-        z.RemoveEquipment();
+        
 
         Debug.Log("Piece stolen and destroyed. Ready for next steal in " + stealCooldown + "s");
         yield return new WaitForSeconds(stealCooldown);

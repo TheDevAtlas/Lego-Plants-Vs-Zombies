@@ -18,6 +18,8 @@ public class Zombie : MonoBehaviour
     private ZombieState state = ZombieState.Walking;
     private PlantHealth currentPlant;
 
+    Animator anim;
+
     // New equipment-related fields
     // equipmentHealth represents the extra health provided by attached equipment,
     // and equipmentEquipped signals if the equipment is still in place.
@@ -38,6 +40,7 @@ public class Zombie : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         gc = GameObject.Find("Game Controller").GetComponent<GameController>();
         SetZombie();
     }
@@ -49,8 +52,14 @@ public class Zombie : MonoBehaviour
 
         if (state == ZombieState.Walking)
         {
+            anim.SetTrigger("DontEat");
             transform.position += walkDirection.normalized * speed * Time.deltaTime;
             CheckForPlant();
+            
+        }
+        else
+        {
+            anim.ResetTrigger("DontEat");
         }
     }
 
@@ -67,6 +76,7 @@ public class Zombie : MonoBehaviour
                 state = ZombieState.Eating;
                 currentPlant = plant;
                 StartCoroutine(EatPlant());
+                anim.SetTrigger("Eat");
                 break;
             }
         }
@@ -90,6 +100,7 @@ public class Zombie : MonoBehaviour
 
         // Fallback in case the plant becomes null unexpectedly.
         state = ZombieState.Walking;
+        anim.ResetTrigger("Eat");
     }
 
     public void TakeDamage(int damage, DamageType type)
@@ -146,24 +157,37 @@ public class Zombie : MonoBehaviour
     public void Die(DamageType type)
     {
         // If the zombie takes fire or explosive damage, tint it grey.
-        if (type == DamageType.Fire || type == DamageType.Explode)
+        if (type == DamageType.Fire)
         {
             // Tints every renderer in the zombie (including child pieces) grey.
-            Renderer[] renderers = GetComponentsInChildren<Renderer>();
-            foreach (Renderer r in renderers)
-            {
+            foreach (Renderer r in GetComponentsInChildren<Renderer>(true)){ // include self
+            
                 r.material.color = Color.grey;
             }
         }
 
+        if (type == DamageType.Explode)
+        {
+            // Tints every renderer in the zombie (including child pieces) grey.
+            foreach (Renderer r in GetComponentsInChildren<Renderer>(true)){  // include self
+            
+                r.material.color = Color.grey;
+            }
+
+            ExplodePieces(type);
+        }
+
         // Explode every child piece.
-        ExplodePieces(type);
+        //ExplodePieces(type);
 
         // Notify the wave controller that a zombie died.
         GameObject.FindObjectOfType<WaveController>().ZombieDied();
 
         // Destroy the zombie game object.
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
+        anim.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        this.enabled = false;
     }
 
     private void ExplodePieces(DamageType type)
