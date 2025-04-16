@@ -14,7 +14,7 @@ public class CherryBomb : MonoBehaviour
             {
                 //Destroy(zombie);
 
-                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Explode);
+                zombie.GetComponent<Zombie>().Die(Zombie.DamageType.Explode);
             }
         }
 

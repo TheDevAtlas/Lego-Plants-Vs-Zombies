@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToChew: 15
-  detectionRangeX: 1.5
+  detectionRangeX: 3
   isChewing: 0
   animator: {fileID: 3170991014618755168}
   zRowTolerance: 0.3

@@ -18,6 +18,24 @@ public class Zombie : MonoBehaviour
     private ZombieState state = ZombieState.Walking;
     private PlantHealth currentPlant;
 
+    // New equipment-related fields
+    // equipmentHealth represents the extra health provided by attached equipment,
+    // and equipmentEquipped signals if the equipment is still in place.
+    private int equipmentHealth = 0;
+    private bool equipmentEquipped = false;
+
+    public ZombieType zombieType;
+
+    // Visual equipment pieces for various zombie types
+    public GameObject[] coneHeadPieces;
+    public GameObject[] bucketHeadPieces;
+    public GameObject[] screenPieces;
+    public GameObject[] footballPieces;
+    public GameObject[] flagPieces;
+
+    // You can adjust the explosion force as needed.
+    public float explosionForce = 0.2f;
+
     void Start()
     {
         gc = GameObject.Find("Game Controller").GetComponent<GameController>();
@@ -70,44 +88,213 @@ public class Zombie : MonoBehaviour
             yield return new WaitForSeconds(eatInterval);
         }
 
-        // fallback in case plant becomes null unexpectedly
+        // Fallback in case the plant becomes null unexpectedly.
         state = ZombieState.Walking;
     }
 
     public void TakeDamage(int damage, DamageType type)
     {
+        // Compute effective damage based on the damage type
+        int effectiveDamage = damage;
         switch (type)
         {
-            case DamageType.Normal: health -= damage; break;
-            case DamageType.Fire: health -= damage * 2; break;
-            case DamageType.Ice: health -= damage; break;
-            case DamageType.Explode: health -= damage; break;
+            case DamageType.Normal:
+                effectiveDamage = damage;
+                break;
+            case DamageType.Fire:
+                effectiveDamage = damage * 2;
+                break;
+            case DamageType.Ice:
+                effectiveDamage = damage;
+                break;
+            case DamageType.Explode:
+                effectiveDamage = damage;
+                break;
         }
 
-        if (health <= 0){
-            GameObject.FindObjectOfType<WaveController>().ZombieDied();
-            Destroy(gameObject);
+        // If equipment is still attached, apply damage to it first.
+        if (equipmentEquipped && equipmentHealth > 0)
+        {
+            if (equipmentHealth > effectiveDamage)
+            {
+                equipmentHealth -= effectiveDamage;
+                effectiveDamage = 0;
+            }
+            else
+            {
+                // Calculate any leftover damage after equipment is depleted.
+                effectiveDamage -= equipmentHealth;
+                equipmentHealth = 0;
+                // Detach the equipment now that its health is gone.
+                DetachEquipment();
+                equipmentEquipped = false;
+            }
+        }
+
+        // Apply any remaining damage to the zombie's base health.
+        if (effectiveDamage > 0)
+        {
+            health -= effectiveDamage;
+            if (health <= 0)
+            {
+                // Instead of destroying immediately, call Die with the damage type.
+                Die(type);
+            }
         }
     }
 
-    public ZombieType zombieType;
+    public void Die(DamageType type)
+    {
+        // If the zombie takes fire or explosive damage, tint it grey.
+        if (type == DamageType.Fire || type == DamageType.Explode)
+        {
+            // Tints every renderer in the zombie (including child pieces) grey.
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in renderers)
+            {
+                r.material.color = Color.grey;
+            }
+        }
 
-    public GameObject[] coneHeadPieces;
-    public GameObject[] bucketHeadPieces;
-    public GameObject[] screenPieces;
-    public GameObject[] footballPieces;
-    public GameObject[] flagPieces;
+        // Explode every child piece.
+        ExplodePieces(type);
+
+        // Notify the wave controller that a zombie died.
+        GameObject.FindObjectOfType<WaveController>().ZombieDied();
+
+        // Destroy the zombie game object.
+        Destroy(gameObject);
+    }
+
+    private void ExplodePieces(DamageType type)
+    {
+        foreach (Transform child in GetComponentsInChildren<Transform>(true)) // include self
+        {
+            if (child == transform) continue; // skip the root zombie object
+
+            // Detach from parent
+            child.parent = null;
+
+            // Add Rigidbody if not already present
+            Rigidbody rb = child.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = child.gameObject.AddComponent<Rigidbody>();
+                rb.linearDamping = 2;
+                rb.angularDamping = 2;
+                child.gameObject.AddComponent<SphereCollider>();
+            }
+
+            // Generate a random explosion direction
+            Vector3 randomDir = new Vector3(
+                Random.Range(-1f, 1f),
+                Random.Range(0.5f, 1f),  // Upward bias
+                Random.Range(-1f, 1f)
+            ).normalized;
+
+            // Apply the explosion force
+            if(type == DamageType.Explode)
+            {
+                rb.AddForce(randomDir * explosionForce);
+                rb.AddTorque(randomDir * explosionForce);
+            }
+            else
+            {
+                rb.AddForce(randomDir * explosionForce / 10f);
+                rb.AddTorque(randomDir * explosionForce / 10f);
+            }
+            
+
+            // Destroy after 2 seconds
+            Destroy(child.gameObject, 5f);
+        }
+    }
+
 
     public void SetZombie()
     {
+        // Set the base zombie health always to 190.
+        health = 190;
+
+        // Assign extra equipment health based on zombie type and activate visuals.
+        // The extra health equals the original total health minus the base health.
         switch (zombieType)
         {
-            case ZombieType.Normal: health = 190; break;
-            case ZombieType.Conehead: health = 560; foreach (var p in coneHeadPieces) p.SetActive(true); break;
-            case ZombieType.Buckethead: health = 1290; foreach (var p in bucketHeadPieces) p.SetActive(true); break;
-            case ZombieType.Screen: health = 1290; foreach (var p in screenPieces) p.SetActive(true); break;
-            case ZombieType.Football: health = 1100; speed *= 2f; foreach (var p in footballPieces) p.SetActive(true); break;
-            case ZombieType.Flag: health = 190; foreach (var p in flagPieces) p.SetActive(true); break;
+            case ZombieType.Normal:
+                equipmentHealth = 0;
+                equipmentEquipped = false;
+                break;
+            case ZombieType.Conehead:
+                equipmentHealth = 560 - 190; // 370 extra equipment health.
+                equipmentEquipped = true;
+                foreach (var p in coneHeadPieces)
+                    p.SetActive(true);
+                break;
+            case ZombieType.Buckethead:
+                equipmentHealth = 1290 - 190; // 1100 extra equipment health.
+                equipmentEquipped = true;
+                foreach (var p in bucketHeadPieces)
+                    p.SetActive(true);
+                break;
+            case ZombieType.Screen:
+                equipmentHealth = 1290 - 190; // 1100 extra equipment health.
+                equipmentEquipped = true;
+                foreach (var p in screenPieces)
+                    p.SetActive(true);
+                break;
+            case ZombieType.Football:
+                equipmentHealth = 1100 - 190; // 910 extra equipment health.
+                equipmentEquipped = true;
+                speed *= 2f;
+                foreach (var p in footballPieces)
+                    p.SetActive(true);
+                break;
+            case ZombieType.Flag:
+                equipmentHealth = 0; // No extra equipment health.
+                equipmentEquipped = false;
+                foreach (var p in flagPieces)
+                    p.SetActive(true);
+                break;
+        }
+    }
+
+    private void DetachEquipment()
+    {
+        // This function detaches any currently equipped visual pieces
+        // by unparenting them and adding a Rigidbody so that they can pop off.
+        GameObject[] piecesToDetach = null;
+        switch (zombieType)
+        {
+            case ZombieType.Conehead:
+                piecesToDetach = coneHeadPieces;
+                break;
+            case ZombieType.Buckethead:
+                piecesToDetach = bucketHeadPieces;
+                break;
+            case ZombieType.Screen:
+                piecesToDetach = screenPieces;
+                break;
+            case ZombieType.Football:
+                piecesToDetach = footballPieces;
+                break;
+            case ZombieType.Flag:
+                piecesToDetach = flagPieces;
+                break;
+            default:
+                break;
+        }
+
+        if (piecesToDetach != null)
+        {
+            foreach (var p in piecesToDetach)
+            {
+                if (p.activeInHierarchy)
+                {
+                    p.transform.parent = null;
+                    if (p.GetComponent<Rigidbody>() == null)
+                        p.AddComponent<Rigidbody>();
+                }
+            }
         }
     }
 }

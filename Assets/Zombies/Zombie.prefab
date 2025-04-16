@@ -1304,6 +1304,7 @@ MonoBehaviour:
   - {fileID: 3445511918536949543}
   flagPieces:
   - {fileID: 5657795527202561391}
+  explosionForce: 100
 --- !u!95 &6280377058817607590
 Animator:
   serializedVersion: 7

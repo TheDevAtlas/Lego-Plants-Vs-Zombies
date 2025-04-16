@@ -47,7 +47,7 @@ public class PotatoMine : MonoBehaviour
             float dx = Mathf.Abs(zombie.transform.position.x - transform.position.x);
             float dz = Mathf.Abs(zombie.transform.position.z - transform.position.z);
 
-            if (dx <= detectionRangeX && dz <= zRowTolerance)
+            if (dx <= detectionRangeX - 0.2f && dz <= zRowTolerance)
             {
                 Explode();
                 break;
@@ -61,12 +61,13 @@ public class PotatoMine : MonoBehaviour
 
         foreach (GameObject zombie in zombies)
         {
+            float dx = Mathf.Abs(zombie.transform.position.x - transform.position.x);
             float dz = Mathf.Abs(zombie.transform.position.z - transform.position.z);
-            if (Vector3.Distance(zombie.transform.position, transform.position) <= 1.414f && dz <= zRowTolerance)
+            if (dx <= detectionRangeX && dz <= zRowTolerance)
             {
                 // Destroy(zombie);
 
-                zombie.GetComponent<Zombie>().TakeDamage(damage, Zombie.DamageType.Explode);
+                zombie.GetComponent<Zombie>().Die(Zombie.DamageType.Explode);
             }
         }
 
