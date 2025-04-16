@@ -27,7 +27,7 @@ public class Sun : MonoBehaviour
         Vector3 mouseWorldPos = GetMouseWorldPosition();
 
         float distance = Vector3.Distance(transform.position, mouseWorldPos);
-        print(distance);
+        //print(distance);
         if (distance <= collectRadius || transform.position.x <= -3.5f || transform.position.x >= 3.5f || transform.position.z <= -2.5f || transform.position.z >= 2.5f)
         {
             StartCoroutine(CollectSun(0f));

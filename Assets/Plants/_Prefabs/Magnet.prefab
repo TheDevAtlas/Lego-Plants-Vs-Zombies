@@ -348,6 +348,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1616972380391625567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6607388215108782685}
+  m_Layer: 0
+  m_Name: StealTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6607388215108782685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616972380391625567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 942990412193863296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986930528234698713
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +414,7 @@ Transform:
   - {fileID: 7009364678440827288}
   - {fileID: 4401588191162529137}
   - {fileID: 4735812877292326776}
+  - {fileID: 6607388215108782685}
   m_Father: {fileID: 32953770406369619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3243384282337348244
@@ -972,6 +1004,7 @@ GameObject:
   - component: {fileID: 1798929127780388710}
   - component: {fileID: -1111417479222765741}
   - component: {fileID: 5571067053431555833}
+  - component: {fileID: 5278585465581447022}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Untagged
@@ -1051,6 +1084,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.64610976
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5278585465581447022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428168591961773772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ff5831f1c1cee43a0aeb2443ffb05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 6607388215108782685}
+  sightRange: 15
+  stealCooldown: 2
+  isStealing: 0
 --- !u!1 &7458750016798655341
 GameObject:
   m_ObjectHideFlags: 0

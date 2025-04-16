@@ -6,27 +6,23 @@ public class Magnet : MonoBehaviour
 {
     public Transform targetTransform;  // Where the equipment should fly to
     public float sightRange = 5f;      // How far the magnet shroom can see
-    public float zTolerance = 0.3f;    // For lane matching
     public float stealCooldown = 3f;
 
-    private bool isStealing = false;
+    public bool isStealing = false;
 
     void Update()
     {
         if (!isStealing)
         {
-            GameObject equipment = TryFindMetalEquipment();
-            if (equipment != null)
-            {
-                StartCoroutine(StealEquipment(equipment));
-            }
+            TryFindMetalEquipment();
         }
     }
 
-    GameObject TryFindMetalEquipment()
+    void TryFindMetalEquipment()
     {
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
         List<GameObject> possibleTargets = new List<GameObject>();
+        List<Zombie> possibleZombies = new List<Zombie>();
 
         foreach (GameObject zombie in zombies)
         {
@@ -34,9 +30,7 @@ public class Magnet : MonoBehaviour
             if (z == null || !z.gameObject.activeInHierarchy) continue;
 
             float distance = Vector3.Distance(transform.position, zombie.transform.position);
-            bool inSameLane = Mathf.Abs(zombie.transform.position.z - transform.position.z) <= zTolerance;
-
-            if (distance <= sightRange && inSameLane)
+            if (distance <= sightRange)
             {
                 GameObject[] metalPieces = null;
 
@@ -53,59 +47,66 @@ public class Magnet : MonoBehaviour
                         break;
                 }
 
-                if (metalPieces != null)
+                if (metalPieces != null && metalPieces.Length > 0 && metalPieces[0] != null)
                 {
-                    foreach (var piece in metalPieces)
-                    {
-                        if (piece.activeInHierarchy)
-                        {
-                            possibleTargets.Add(piece);
-                        }
-                    }
+                    possibleTargets.Add(metalPieces[0]);
+                    possibleZombies.Add(z);
                 }
             }
         }
 
         if (possibleTargets.Count > 0)
         {
-            return possibleTargets[Random.Range(0, possibleTargets.Count)];
-        }
+            int i = Random.Range(0, possibleTargets.Count);
 
-        return null;
+            StartCoroutine(StealEquipment(possibleTargets[i], possibleZombies[i]));
+        }
     }
 
-    IEnumerator StealEquipment(GameObject piece)
+    IEnumerator StealEquipment(GameObject piece, Zombie z)
     {
         isStealing = true;
 
         Vector3 startPos = piece.transform.position;
         Vector3 startScale = piece.transform.localScale;
 
-        // Detach the piece
+        // Detach and disable physics
         piece.transform.parent = null;
         if (piece.GetComponent<Rigidbody>() == null)
         {
-            piece.AddComponent<Rigidbody>().isKinematic = true; // Disable physics
+            piece.AddComponent<Rigidbody>().isKinematic = true;
         }
 
-        float duration = 10f;
-        float time = 0f;
+        // Step 1: Slerp to target position over 0.8 seconds
+        float moveDuration = 0.8f;
+        float moveTime = 0f;
 
-        while (time < duration)
+        while (moveTime < moveDuration)
         {
-            float t = time / duration;
-
-            // Slerp position
+            float t = moveTime / moveDuration;
             piece.transform.position = Vector3.Slerp(startPos, targetTransform.position, t);
+            moveTime += Time.deltaTime;
+            yield return null;
+        }
 
-            // Slerp scale to zero
+        piece.transform.position = targetTransform.position;
+
+        // Step 2: Slerp scale to 0 over 10 seconds
+        float scaleDuration = 10f;
+        float scaleTime = 0f;
+
+        while (scaleTime < scaleDuration)
+        {
+            float t = scaleTime / scaleDuration;
             piece.transform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
-
-            time += Time.deltaTime;
+            scaleTime += Time.deltaTime;
             yield return null;
         }
 
         Destroy(piece);
+        z.RemoveEquipment();
+
+        Debug.Log("Piece stolen and destroyed. Ready for next steal in " + stealCooldown + "s");
         yield return new WaitForSeconds(stealCooldown);
         isStealing = false;
     }

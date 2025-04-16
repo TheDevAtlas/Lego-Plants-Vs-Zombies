@@ -27,8 +27,54 @@ public class WaveController : MonoBehaviour
     private int zombiesKilled = 0;
     private bool spawning = false;
 
+    private List<GameObject> previewZombies = new List<GameObject>();
+
+    void Start()
+    {
+        // This would be called by GameController during seed selection camera move
+        SpawnPreviewZombies();
+    }
+
+    public void SpawnPreviewZombies()
+    {
+        if (waves.Count == 0) return;
+
+        Wave firstWave = waves[0];
+        HashSet<Zombie.ZombieType> shownTypes = new HashSet<Zombie.ZombieType>();
+
+        if (firstWave.NormalZombies > 0) shownTypes.Add(Zombie.ZombieType.Normal);
+        if (firstWave.ConeheadZombies > 0) shownTypes.Add(Zombie.ZombieType.Conehead);
+        if (firstWave.BucketheadZombies > 0) shownTypes.Add(Zombie.ZombieType.Buckethead);
+        if (firstWave.ScreenZombies > 0) shownTypes.Add(Zombie.ZombieType.Screen);
+        if (firstWave.FootballZombies > 0) shownTypes.Add(Zombie.ZombieType.Football);
+        if (firstWave.FlagZombies > 0) shownTypes.Add(Zombie.ZombieType.Flag);
+
+        int laneOffset = 0;
+        foreach (Zombie.ZombieType type in shownTypes)
+        {
+            int lane = laneOffset - 2; // Spread lanes from -2 to 2
+            Vector3 pos = spawnPoint.position + new Vector3(0, 0f, lane);
+            GameObject zombieObj = Instantiate(zombiePrefab, pos, Quaternion.identity);
+            zombieObj.transform.Rotate(0f, -90f, 0f);
+
+            Zombie z = zombieObj.GetComponent<Zombie>();
+            z.zombieType = type;
+            z.SetZombie();
+
+            previewZombies.Add(zombieObj);
+            laneOffset++;
+        }
+    }
+
     public void StartLevel()
     {
+        // Destroy preview zombies before real wave
+        foreach (var preview in previewZombies)
+        {
+            if (preview != null) Destroy(preview);
+        }
+        previewZombies.Clear();
+
         StartCoroutine(SpawnWave());
     }
 
@@ -59,7 +105,6 @@ public class WaveController : MonoBehaviour
 
         foreach (var zombieType in zombiePool)
         {
-            //float delay = Random.Range(1f, 2f);
             totalDelay += Random.Range(1f, 2f);
             StartCoroutine(SpawnZombieWithDelay(zombieType, totalDelay));
         }

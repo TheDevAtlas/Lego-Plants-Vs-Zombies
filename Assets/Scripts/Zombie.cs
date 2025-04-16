@@ -297,4 +297,13 @@ public class Zombie : MonoBehaviour
             }
         }
     }
+
+    public void RemoveEquipment()
+    {
+        bucketHeadPieces = null;
+        screenPieces = null;
+        footballPieces = null;
+        zombieType = ZombieType.Normal;
+    }
+
 }
