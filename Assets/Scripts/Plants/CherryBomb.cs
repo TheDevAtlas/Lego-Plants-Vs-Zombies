@@ -3,6 +3,7 @@ using UnityEngine;
 public class CherryBomb : MonoBehaviour
 {
     public int damage;
+    public GameObject explodePrefab;
     public void Explode()
     {
 
@@ -17,6 +18,8 @@ public class CherryBomb : MonoBehaviour
                 zombie.GetComponent<Zombie>().Die(Zombie.DamageType.Explode);
             }
         }
+
+        Destroy(Instantiate(explodePrefab, transform.position, Quaternion.identity),1.5f);
 
         Destroy(gameObject);
     }

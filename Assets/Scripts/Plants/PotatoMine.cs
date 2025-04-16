@@ -15,6 +15,8 @@ public class PotatoMine : MonoBehaviour
     private bool risingUp = false;
     public int damage;
 
+    public GameObject explodePrefab;
+
     void Start()
     {
         startPos = transform.position;
@@ -70,6 +72,8 @@ public class PotatoMine : MonoBehaviour
                 zombie.GetComponent<Zombie>().Die(Zombie.DamageType.Explode);
             }
         }
+
+        Destroy(Instantiate(explodePrefab, transform.position, Quaternion.identity),1.5f);
 
         Destroy(gameObject);
     }

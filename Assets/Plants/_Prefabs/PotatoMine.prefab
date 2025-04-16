@@ -110,6 +110,7 @@ MonoBehaviour:
   zRowTolerance: 0.3
   slerpSpeed: 2
   damage: 1800
+  explodePrefab: {fileID: 828295372911253225, guid: 34f3d4683becf6c41ac06380c3b8997a, type: 3}
 --- !u!1 &977727166965540343
 GameObject:
   m_ObjectHideFlags: 0
