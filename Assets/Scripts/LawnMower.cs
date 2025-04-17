@@ -17,22 +17,7 @@ public class LawnMower : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            //return;
         }
-
-        // GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
-        // foreach (GameObject zombie in zombies)
-        // {
-        //     float dx = Mathf.Abs(zombie.transform.position.x - transform.position.x);
-        //     float dz = Mathf.Abs(zombie.transform.position.z - transform.position.z);
-
-        //     if (dx <= distanceToDetect - 0.2f && dz <= zRowTolerance)
-        //     {
-        //         isActive = true;
-        //         break;
-        //     }
-        // }
-        
     }
 
     void OnTriggerEnter(Collider other)
@@ -40,6 +25,11 @@ public class LawnMower : MonoBehaviour
         print("hit a thing");
         if (other.CompareTag("zombie"))
         {
+            if(!isActive)
+            {
+                AudioManager.instance.Play("Lawnmower");
+            }
+
             isActive = true;
             other.gameObject.GetComponent<Zombie>().Die(Zombie.DamageType.Normal);
         }

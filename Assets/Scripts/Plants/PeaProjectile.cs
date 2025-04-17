@@ -16,6 +16,10 @@ public class PeaProjectile : MonoBehaviour
     private Renderer rend;
     public int damage;
 
+    public GameObject effectN;
+    public GameObject effectI;
+    public GameObject effectF;
+
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -37,6 +41,36 @@ public class PeaProjectile : MonoBehaviour
         print("hit a thing");
         if (other.CompareTag("zombie"))
         {
+            int choice = UnityEngine.Random.Range(0, 3); // 0, 1, or 2
+
+            switch (choice)
+            {
+                case 0:
+                    AudioManager.instance.Play("PeaHit1");
+                    break;
+                case 1:
+                    AudioManager.instance.Play("PeaHit2");
+                    break;
+                case 2:
+                    AudioManager.instance.Play("PeaHit3");
+                    break;
+            }
+
+            
+            switch (peaType)
+            {
+                case PeaType.Normal:
+                    Destroy(Instantiate(effectN, transform.position, Quaternion.identity),1.5f);
+                    break;
+                case PeaType.Ice:
+                    Destroy(Instantiate(effectI, transform.position, Quaternion.identity),1.5f);
+                    AudioManager.instance.Play("SnowPea");
+                    break;
+                case PeaType.Fire:
+                    Destroy(Instantiate(effectF, transform.position, Quaternion.identity),1.5f);
+                    AudioManager.instance.Play("FirePea");
+                    break;
+            }
             DealDamage(other.gameObject);
             Destroy(gameObject);
         }

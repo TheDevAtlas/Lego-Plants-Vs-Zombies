@@ -61,6 +61,8 @@ public class PotatoMine : MonoBehaviour
     {
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
 
+        AudioManager.instance.Play("Potato");
+
         foreach (GameObject zombie in zombies)
         {
             float dx = Mathf.Abs(zombie.transform.position.x - transform.position.x);

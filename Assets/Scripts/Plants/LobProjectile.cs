@@ -14,6 +14,9 @@ public class LobProjectile : MonoBehaviour
     private Vector3 lastPosition;
     public int damage;
 
+    public GameObject effectN;
+    public GameObject effectI;
+
     void Start()
     {
         if (zombieTarget == null)
@@ -59,6 +62,34 @@ public class LobProjectile : MonoBehaviour
         print("hit a thing");
         if (other.CompareTag("zombie"))
         {
+            int choice = UnityEngine.Random.Range(0, 4); // 0, 1, or 2
+
+            switch (choice)
+            {
+                case 0:
+                    AudioManager.instance.Play("Melon1");
+                    break;
+                case 1:
+                    AudioManager.instance.Play("Melon2");
+                    break;
+                case 2:
+                    AudioManager.instance.Play("Melon3");
+                    break;
+                case 3:
+                    AudioManager.instance.Play("Melon4");
+                    break;
+            }
+
+            switch (lobType)
+            {
+                case LobType.Normal:
+                    Destroy(Instantiate(effectN, transform.position, Quaternion.identity),1.5f);
+                    break;
+                case LobType.Ice:
+                    AudioManager.instance.Play("SnowPea");
+                    Destroy(Instantiate(effectI, transform.position, Quaternion.identity),1.5f);
+                    break;
+            }
             DealDamage(other.gameObject);
             Destroy(gameObject);
         }

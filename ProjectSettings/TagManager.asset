@@ -9,6 +9,7 @@ TagManager:
   - tile
   - zombie
   - torchwood
+  - packet
   layers:
   - Default
   - TransparentFX

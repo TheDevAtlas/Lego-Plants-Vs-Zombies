@@ -127,6 +127,8 @@ MonoBehaviour:
   arcHeight: 2
   speed: 5
   damage: 0
+  effectN: {fileID: 360453088522090469, guid: 44b10fc7c8486bb49982b820e877da7b, type: 3}
+  effectI: {fileID: 360453088522090469, guid: 83ac138be504c1647af060085c67634e, type: 3}
 --- !u!54 &-4522945797560829857
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -47,7 +47,6 @@ public class PeaShooter : MonoBehaviour
     {
         isShooting = true;
         shootAnimator.SetTrigger("Shoot");
-
         yield return new WaitForSeconds(1f); // Cooldown before next shot
         isShooting = false;
     }

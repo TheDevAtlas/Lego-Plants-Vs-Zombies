@@ -55,7 +55,7 @@ public class Sun : MonoBehaviour
         isBeingCollected = true;
         if (rb != null)
             rb.isKinematic = true;
-
+        AudioManager.instance.Play("Sun");
         Vector3 startPos = transform.position;
         Vector3 targetPos = sunCollectionPoint.transform.position;
         Vector3 startScale = transform.localScale;

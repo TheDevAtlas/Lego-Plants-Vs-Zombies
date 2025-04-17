@@ -58,7 +58,7 @@ public class Magnet : MonoBehaviour
         if (possibleTargets.Count > 0)
         {
             int i = Random.Range(0, possibleTargets.Count);
-
+            AudioManager.instance.Play("Magnet");
             StartCoroutine(StealEquipment(possibleTargets[i], possibleZombies[i]));
         }
     }

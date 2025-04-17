@@ -200,6 +200,21 @@ public class ExtendedBoardGenerator : MonoBehaviour
             rend.material.color = col;
         }
 
+        int choice = UnityEngine.Random.Range(0, 3); // 0, 1, or 2
+
+        switch (choice)
+        {
+            case 0:
+                AudioManager.instance.Play("Lego");
+                break;
+            case 1:
+                AudioManager.instance.Play("Lego2");
+                break;
+            case 2:
+                AudioManager.instance.Play("Lego3");
+                break;
+        }
+
         yield return StartCoroutine(FlashTile(renderers));
     }
 

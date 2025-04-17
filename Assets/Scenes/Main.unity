@@ -1981,6 +1981,30 @@ MonoBehaviour:
     ScreenZombies: 1
     FootballZombies: 3
     FlagZombies: 1
+  - NormalZombies: 15
+    ConeheadZombies: 4
+    BucketheadZombies: 1
+    ScreenZombies: 1
+    FootballZombies: 3
+    FlagZombies: 1
+  - NormalZombies: 20
+    ConeheadZombies: 4
+    BucketheadZombies: 1
+    ScreenZombies: 1
+    FootballZombies: 3
+    FlagZombies: 1
+  - NormalZombies: 25
+    ConeheadZombies: 4
+    BucketheadZombies: 1
+    ScreenZombies: 1
+    FootballZombies: 3
+    FlagZombies: 1
+  - NormalZombies: 74
+    ConeheadZombies: 4
+    BucketheadZombies: 1
+    ScreenZombies: 1
+    FootballZombies: 3
+    FlagZombies: 1
   zombiePrefab: {fileID: 6935406208149067380, guid: 64ac2f6cebc996a41990ca12220e2c41, type: 3}
   spawnPoint: {fileID: 1199864289}
   spawnDelay: 16
@@ -2768,6 +2792,219 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774458594}
   m_CullTransparentMesh: 1
+--- !u!1 &1795290918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795290919}
+  - component: {fileID: 1795290920}
+  m_Layer: 0
+  m_Name: Audio Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795290919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795290918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795290920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795290918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55361dac19098ca44bcd2e872a1cb8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PeaHit1
+    clip: {fileID: 8300000, guid: 20eb03c3136f49e478532b84b95e20f7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PeaHit2
+    clip: {fileID: 8300000, guid: be78f131b04108d44b39b8312433cdac, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PeaHit3
+    clip: {fileID: 8300000, guid: 5b9018cd5379ec041a7da9d3f2c06d4f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SnowPea
+    clip: {fileID: 8300000, guid: c83f51658bcd3d143949c707bfb94da6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FirePea
+    clip: {fileID: 8300000, guid: d64bf9d6b94993042ac0a9985da11c5e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lawnmower
+    clip: {fileID: 8300000, guid: b64cca80c65d4254b87f91f7b2e0b81e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cherry
+    clip: {fileID: 8300000, guid: 50c2c7730e0f2084fad3ffc4a39f6b78, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Potato
+    clip: {fileID: 8300000, guid: ac30ae7ad0d1f5b4ab81bbfd6b9154e3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Chomp1
+    clip: {fileID: 8300000, guid: cd8eb65a801602643b9ea73ffd87fb57, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Chomp2
+    clip: {fileID: 8300000, guid: dc4a79afa961a2142bdeadadc1be7a33, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Chomp3
+    clip: {fileID: 8300000, guid: 155504318018af44da34fd58b8b3afa9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Chomp4
+    clip: {fileID: 8300000, guid: 52210823fc9d3c04cb7c9c9499908af0, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gulp
+    clip: {fileID: 8300000, guid: 75d1725434d48854ca2bf79ab8b34102, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Magnet
+    clip: {fileID: 8300000, guid: ffd902db02bb39346962e1bf11548921, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Melon1
+    clip: {fileID: 8300000, guid: bbc5cce0411744f479c8c4d828400844, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Melon2
+    clip: {fileID: 8300000, guid: 7208727c391ed7f469c0fbd7981d8869, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Melon3
+    clip: {fileID: 8300000, guid: bdbf7cf6bb220a748b11009e4f106964, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Melon4
+    clip: {fileID: 8300000, guid: 891420d736914214685c9a3f167ac53b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Plant
+    clip: {fileID: 8300000, guid: 5c619b1ad80b1b44fbd9db00b26e1a61, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Plant2
+    clip: {fileID: 8300000, guid: 42704ca9a06a7b4468bbbaf74e316c2e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: 2b6f61ab66358b642a8adbb4a2bd9829, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: 363e51107c60f1541bccb150b0235af7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Throw2
+    clip: {fileID: 8300000, guid: 9c83e33b540444644b7ee2b5ec4d12cb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sun
+    clip: {fileID: 8300000, guid: 22756a66a30e4d440a43361ecce8b254, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChooseSeeds
+    clip: {fileID: 8300000, guid: 6a03d6b4f2959af42b82d65a8c43ecbc, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lego
+    clip: {fileID: 8300000, guid: 7d08bda62486a9d46904707cb8fbab66, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lego2
+    clip: {fileID: 8300000, guid: be3697cebcb665a4d904750f3f1d2e8d, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lego3
+    clip: {fileID: 8300000, guid: 5166fa544d9cbb44595b3a1e500f94d2, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1886987068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,6 +3428,7 @@ SceneRoots:
   - {fileID: 1886987069}
   - {fileID: 711867552}
   - {fileID: 1485852904}
+  - {fileID: 1795290919}
   - {fileID: 974158735}
   - {fileID: 1199864289}
   - {fileID: 97416140}

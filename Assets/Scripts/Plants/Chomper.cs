@@ -54,7 +54,6 @@ public class Chomper : MonoBehaviour
 
     IEnumerator Chew()
     {
-        
         // Start animator
         animator.SetTrigger("Chew");
         animator.ResetTrigger("Unchew");
@@ -67,6 +66,8 @@ public class Chomper : MonoBehaviour
 
         isChewing = false;
 
+        AudioManager.instance.Play("Gulp");
+
         // End animator
         animator.SetTrigger("Unchew");
         animator.ResetTrigger("Chew");
@@ -74,6 +75,23 @@ public class Chomper : MonoBehaviour
 
     public void Eat()
     {
+        int choice = UnityEngine.Random.Range(0, 4); // 0, 1, or 2
+
+        switch (choice)
+        {
+            case 0:
+                AudioManager.instance.Play("Chomp1");
+                break;
+            case 1:
+                AudioManager.instance.Play("Chomp2");
+                break;
+            case 2:
+                AudioManager.instance.Play("Chomp3");
+                break;
+            case 3:
+                AudioManager.instance.Play("Chomp4");
+                break;
+        }
         isChewing = true;
         Destroy(currentTarget);
     }

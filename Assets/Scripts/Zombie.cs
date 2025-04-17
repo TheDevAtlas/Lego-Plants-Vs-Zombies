@@ -95,7 +95,21 @@ public class Zombie : MonoBehaviour
                 yield break;
             }
 
+            int choice = UnityEngine.Random.Range(0, 3); // 0, 1, or 2
+
+            switch (choice)
+            {
+                case 0:
+                    AudioManager.instance.Play("Chomp3");
+                    break;
+                case 1:
+                    AudioManager.instance.Play("Chomp2");
+                    break;
+            }
+            AudioManager.instance.Play("ZChew");
             yield return new WaitForSeconds(eatInterval);
+
+            
         }
 
         // Fallback in case the plant becomes null unexpectedly.

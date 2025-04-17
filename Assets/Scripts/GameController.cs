@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        // ChooseSeeds
+        AudioManager.instance.Play("ChooseSeeds");
     }
 
     void Start()

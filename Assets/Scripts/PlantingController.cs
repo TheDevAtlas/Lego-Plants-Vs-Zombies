@@ -106,6 +106,9 @@ public class PlantingController : MonoBehaviour
 
                         Magnet ghostMagnet = ghostInstance.GetComponent<Magnet>();
                         if (ghostMagnet) {ghostMagnet.enabled = false;}
+
+                        Chomper ghostChomper = ghostInstance.GetComponent<Chomper>();
+                        if (ghostChomper) {ghostChomper.enabled = false;}
                     }
                     else if (ghostInstance != null)
                     {
@@ -133,7 +136,17 @@ public class PlantingController : MonoBehaviour
                             if (SunCount >= selectedSeed.sunCost)
                             {
                                 AddSun(-selectedSeed.sunCost);
+                                int choice = UnityEngine.Random.Range(0, 2); // 0, 1, or 2
 
+                                switch (choice)
+                                {
+                                    case 0:
+                                        AudioManager.instance.Play("Plant");
+                                        break;
+                                    case 1:
+                                        AudioManager.instance.Play("Plant2");
+                                        break;
+                                }
                                 // Plant the seed by instantiating the actual plant prefab.
                                 GameObject newPlant = Instantiate(selectedSeed.plantPrefab, tilePosition + selectedSeed.offset, Quaternion.identity);
                                 newPlant.transform.Rotate(selectedSeed.rotateOffset);

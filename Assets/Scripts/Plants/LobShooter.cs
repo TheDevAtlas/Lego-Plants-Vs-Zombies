@@ -68,6 +68,17 @@ public class LobShooter : MonoBehaviour
 
     public void ShootProjectile()
     {
+        int choice = UnityEngine.Random.Range(0, 2); // 0, 1, or 2
+
+        switch (choice)
+        {
+            case 0:
+                AudioManager.instance.Play("Throw");
+                break;
+            case 1:
+                AudioManager.instance.Play("Throw2");
+                break;
+        }
         if (currentTarget == null) return;
 
         GameObject pea = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);

@@ -37,9 +37,11 @@ public class SeedPacket : MonoBehaviour, IPointerClickHandler
     public bool isAnimating = false;    // Prevents multiple rapid clicks.
     public Transform originalParent;    // The available slot that originally held this packet.
     public Transform originalSlot;      // Alias for the original parent (set in Start).
+    PlantingController plantingController;
 
     void Start()
     {
+        plantingController = FindObjectOfType<PlantingController>();
         // Initialize the seed packet from the Seed ScriptableObject values.
         if (seed != null)
         {
@@ -81,6 +83,7 @@ public class SeedPacket : MonoBehaviour, IPointerClickHandler
         if (GameController.Instance != null)
         {
             GameController.Instance.SeedPacketClicked(this);
+            AudioManager.instance.Play("Select");
         }
     }
 
@@ -92,29 +95,31 @@ public class SeedPacket : MonoBehaviour, IPointerClickHandler
     {
         if (isReady)
         {
-            // Example: Determine desired planting position. This could be based on a mouse click, a predetermined grid cell, etc.
-            Vector3 desiredPosition = Vector3.zero;
-
-            // Call the planting controller.
-            // Ensure you have a proper reference to the planting controller (could be a singleton or assigned at runtime)
-            PlantingController plantingController = FindObjectOfType<PlantingController>();
-            if (plantingController != null)
-            {
-                //plantingController.PlantSeed(seed, desiredPosition);
-            }
-            else
-            {
-                Debug.LogError("PlantingController not found in the scene!");
-            }
-
             StartCoroutine(BeginCooldown());
-        }
-        else
-        {
-            // Optionally, provide feedback that the seed is not ready.
         }
     }
 
+    void Update()
+    {
+        if (isReady == false)
+        {
+            return;
+        }
+        if ((plantingController != null && plantingController.SunCount >= seed.sunCost) || GameController.Instance.currentState != GameController.GameState.Playing)
+        {
+            if (mainBackground != null)
+                mainBackground.sprite = readySpriteMain;
+            if (secondBackground != null)
+                secondBackground.sprite = readySpriteSecond;
+        }
+        else
+        {
+            if (mainBackground != null)
+                mainBackground.sprite = notReadySpriteMain;
+            if (secondBackground != null)
+                secondBackground.sprite = notReadySpriteSecond;
+        }
+    }
 
     /// <summary>
     /// Coroutine that handles the cooldown process.
@@ -150,9 +155,9 @@ public class SeedPacket : MonoBehaviour, IPointerClickHandler
         isReady = true;
         if (reloadImage != null)
             reloadImage.gameObject.SetActive(false);
-        if (mainBackground != null)
-            mainBackground.sprite = readySpriteMain;
-        if (secondBackground != null)
-            secondBackground.sprite = readySpriteSecond;
+        // if (mainBackground != null)
+        //     mainBackground.sprite = readySpriteMain;
+        // if (secondBackground != null)
+        //     secondBackground.sprite = readySpriteSecond;
     }
 }

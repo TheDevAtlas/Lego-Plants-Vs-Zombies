@@ -10,11 +10,11 @@ public class CactusProjectile : MonoBehaviour
     public float maxPosition = 25f;
 
     public Material normalMaterial;
-    public Material iceMaterial;
-    public Material fireMaterial;
+
 
     private Renderer rend;
     public int damage;
+    public GameObject effectN;
 
     void Start()
     {
@@ -36,6 +36,7 @@ public class CactusProjectile : MonoBehaviour
         print("hit a thing");
         if (other.CompareTag("zombie"))
         {
+            Destroy(Instantiate(effectN, transform.position, Quaternion.identity),1.5f);
             DealDamage(other.gameObject);
             Destroy(gameObject);
         }
@@ -43,6 +44,21 @@ public class CactusProjectile : MonoBehaviour
 
     void DealDamage(GameObject zombie)
     {
+        int choice = UnityEngine.Random.Range(0, 3); // 0, 1, or 2
+
+        switch (choice)
+        {
+            case 0:
+                AudioManager.instance.Play("PeaHit1");
+                break;
+            case 1:
+                AudioManager.instance.Play("PeaHit2");
+                break;
+            case 2:
+                AudioManager.instance.Play("PeaHit3");
+                break;
+        }
+
         // Replace this with actual damage logic depending on zombie health systems
         switch (peaType)
         {
