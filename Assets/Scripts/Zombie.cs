@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Zombie : MonoBehaviour
 {
@@ -17,6 +18,14 @@ public class Zombie : MonoBehaviour
     private GameController gc;
     private ZombieState state = ZombieState.Walking;
     private PlantHealth currentPlant;
+
+    [Header("Freeze Settings")]
+    public float freezeDuration = 3f;
+    private bool isFrozen = false;
+    private float originalSpeed;
+    private Coroutine freezeCoroutine;
+    private List<Material> originalMaterials = new List<Material>();
+
 
     Animator anim;
 
@@ -42,7 +51,10 @@ public class Zombie : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         gc = GameObject.Find("Game Controller").GetComponent<GameController>();
+        originalSpeed = speed;
+
         SetZombie();
+
     }
 
     void Update()
@@ -127,9 +139,16 @@ public class Zombie : MonoBehaviour
                 effectiveDamage = damage;
                 break;
             case DamageType.Fire:
+                if (freezeCoroutine != null)
+                    StopCoroutine(freezeCoroutine);
+                    RevertMats();
                 effectiveDamage = damage * 2;
                 break;
             case DamageType.Ice:
+                if (freezeCoroutine != null)
+                    StopCoroutine(freezeCoroutine);
+                freezeCoroutine = StartCoroutine(FreezeEffect());
+
                 effectiveDamage = damage;
                 break;
             case DamageType.Explode:
@@ -349,5 +368,55 @@ public class Zombie : MonoBehaviour
         footballPieces = null;
         zombieType = ZombieType.Normal;
     }
+
+    IEnumerator FreezeEffect()
+    {
+        isFrozen = true;
+
+        // Cache original materials and set them to blue
+        List<Renderer> renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
+        originalMaterials.Clear();
+
+        foreach (Renderer r in renderers)
+        {
+            if (r != null)
+            {
+                originalMaterials.Add(r.material);
+                r.material.color = Color.blue;
+            }
+        }
+
+        // Halve speed
+        speed = originalSpeed / 2f;
+
+        yield return new WaitForSeconds(freezeDuration);
+
+        // Revert material colors and speed
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            if (renderers[i] != null && i < originalMaterials.Count)
+            {
+                renderers[i].material.color = originalMaterials[i].color;
+            }
+        }
+
+        speed = originalSpeed;
+        isFrozen = false;
+        freezeCoroutine = null;
+    }
+
+    void RevertMats()
+    {
+        List<Renderer> renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
+        // Revert material colors and speed
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            if (renderers[i] != null && i < originalMaterials.Count)
+            {
+                renderers[i].material.color = originalMaterials[i].color;
+            }
+        }
+    }
+
 
 }

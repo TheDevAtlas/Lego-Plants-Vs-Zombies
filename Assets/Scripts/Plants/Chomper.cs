@@ -66,7 +66,7 @@ public class Chomper : MonoBehaviour
 
         isChewing = false;
 
-        AudioManager.instance.Play("Gulp");
+        //AudioManager.instance.Play("Gulp");
 
         // End animator
         animator.SetTrigger("Unchew");

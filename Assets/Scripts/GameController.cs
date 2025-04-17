@@ -60,11 +60,11 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
         // ChooseSeeds
-        AudioManager.instance.Play("ChooseSeeds");
     }
 
     void Start()
     {
+        AudioManager.instance.Play("ChooseSeeds");
         skySun.enabled = false;
         // If not explicitly assigned, use Camera.main.
         if (mainCamera == null && Camera.main != null)
