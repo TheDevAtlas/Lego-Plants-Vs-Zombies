@@ -200,6 +200,8 @@ public class Zombie : MonoBehaviour
                     r.material.color = Color.grey;
                 }
             }
+
+            anim.enabled = false;
         }
         else if (type == DamageType.Explode)
         {
@@ -211,11 +213,48 @@ public class Zombie : MonoBehaviour
                 }
             }
 
+            anim.enabled = false;
+
             ExplodePieces(type);
         }
         else // Any other type of death, the head, and only the head, should pop off. 
         {
+            foreach (Transform child in GetComponentsInChildren<Transform>(true))
+            {
+                Transform head = child.Find("Head");
+                if (head != null)
+                {
+                    head.parent = null;
 
+                    Rigidbody rb = head.GetComponent<Rigidbody>();
+                    if (rb == null)
+                    {
+                        rb = head.gameObject.AddComponent<Rigidbody>();
+                        rb.linearDamping = 2;
+                        rb.angularDamping = 2;
+                    }
+
+                    if (head.GetComponent<Collider>() == null)
+                    {
+                        head.gameObject.AddComponent<SphereCollider>();
+                    }
+
+                    // Generate a random explosion direction
+                    Vector3 randomDir = new Vector3(
+                        Random.Range(-1f, 1f),
+                        Random.Range(0.5f, 1f),  // Upward bias
+                        Random.Range(-1f, 1f)
+                    ).normalized;
+
+                    rb.AddForce(randomDir * explosionForce / 2f); // Half force for dramatic pop
+                    rb.AddTorque(randomDir * explosionForce / 2f);
+                    anim.SetTrigger("Die");
+                    Destroy(head.gameObject, 5f);
+
+                    break;
+                }
+            }
+            
         }
 
 
@@ -224,7 +263,7 @@ public class Zombie : MonoBehaviour
 
         // Destroy the zombie game object.
         Destroy(gameObject, 2f);
-        anim.enabled = false;
+        
         GetComponent<Collider>().enabled = false;
         this.enabled = false;
     }
