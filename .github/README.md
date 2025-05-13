@@ -54,10 +54,10 @@ The current project includes:
 - Dynamic Level Sizes
 - Custom LEGO Culling for Improved Performance
 - Full Gameplay Loop from Beginning to End:
-- Select Plants
-- Collect Sun
-- Plant
-- Fight
+  - Select Plants
+  - Collect Sun
+  - Plant
+  - Fight
 
 Future work with LEGO includes better rendering techniques and improving how I organize and write code. This was mostly an exercise in making a Plants vs Zombies clone; however, making a LEGO game is a technical challenge in itself, requiring creative shortcuts and optimizations for rendering.
 
