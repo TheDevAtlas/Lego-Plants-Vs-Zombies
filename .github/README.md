@@ -23,7 +23,6 @@ It recreates core mechanics like seed selection, zombie waves, and tile-based co
 
 While this project is NOT a full game, there is a windows build. There is no win / lose state. If you would like to see more about how I made this project I have a video showing my process.
 
-- **[Technical Article](https://thedevatlas.com/projects/lego-pvz/)**
 - **[YouTube Video](https://youtu.be/F9z24XEOPYU?si=AqNc495CYTU1McKZ)**
 
 ## ⚙️ Installation & Setup
